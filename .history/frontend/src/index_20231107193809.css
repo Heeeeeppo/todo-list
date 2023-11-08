@@ -30,19 +30,11 @@ label {
 
 input {
   border-radius: 0.4rem;
-  padding: 0.6rem;
-}
-
-button {
-  margin: 0 10px;
-  border-radius: 0.4rem;
-  padding: 0.6rem;
-  width: 4rem;
 }
 
 .todo {
-  /* background-color: black; */
-  /* color: white; */
+  background-color: black;
+  color: white;
   position: relative;
   padding: 1rem;
   border-radius: 1rem;
@@ -52,9 +44,5 @@ button {
 }
 
 .completed {
-  text-decoration: line-through;
-}
-
-.checked {
   text-decoration: line-through;
 }

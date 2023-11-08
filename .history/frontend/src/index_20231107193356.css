@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  padding: 16px;
+  width: 80%;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.inputField {
+  display: flex;
+  width: 50%;
+  /* margin: auto; */
+  align-items: center;
+}
+
+.todo {
+  background-color: black;
+  color: white;
+  position: relative;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.completed {
+  text-decoration: line-through;
+}

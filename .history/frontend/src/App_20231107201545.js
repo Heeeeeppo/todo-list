@@ -46,7 +46,7 @@ function App() {
         const curElement = event.target;
         if (curElement.id === 'editBtn') {
             const idx = curElement.parentNode.id;
-            const text = curElement.parentNode.firstChild.innerText;
+            const text = curElement.parentNode.childNode.innerText;
             console.log(text);
         }
     }
@@ -82,7 +82,7 @@ function App() {
                     return (
                         <div className="todo" key={idx} id={idx}>
                             <li onClick={toggleComplete}>{todo}</li>
-                            <button id="editBtn" onClick={handleEdit}>Edit</button>
+                            <button id="editBtn">Edit</button>
                             <button onClick={handleDelete}>&#x2715;</button>
                         </div>
                     )

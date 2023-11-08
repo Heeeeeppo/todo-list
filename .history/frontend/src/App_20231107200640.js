@@ -30,25 +30,9 @@ function App() {
         );
     }
 
-    function startEdit(todo) {
-        const curElement = document.getElementById(`${todo.id}`);
-        curElement.innerHTML = `
-            <div className="todo" key="${todo.id}" id="${todo.id}">
-                <li>${todo.text}</li>
-                <button id="saveBtn">Save</button>
-                <button onClick={handleCancel}>Cancel</button>
-            </div>
-        `;
-        return curElement;
-    }
-
     function handleEdit(event) {
         const curElement = event.target;
-        if (curElement.id === 'editBtn') {
-            const idx = curElement.parentNode.id;
-            const text = curElement.parentNode.firstChild.innerText;
-            console.log(text);
-        }
+
     }
 
     function toggleComplete(event) {
@@ -82,7 +66,7 @@ function App() {
                     return (
                         <div className="todo" key={idx} id={idx}>
                             <li onClick={toggleComplete}>{todo}</li>
-                            <button id="editBtn" onClick={handleEdit}>Edit</button>
+                            <button id="editBtn">Edit</button>
                             <button onClick={handleDelete}>&#x2715;</button>
                         </div>
                     )

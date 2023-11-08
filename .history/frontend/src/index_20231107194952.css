@@ -33,7 +33,7 @@ input {
   padding: 0.6rem;
 }
 
-button {
+.button {
   margin: 0 10px;
   border-radius: 0.4rem;
   padding: 0.6rem;
@@ -52,9 +52,5 @@ button {
 }
 
 .completed {
-  text-decoration: line-through;
-}
-
-.checked {
   text-decoration: line-through;
 }

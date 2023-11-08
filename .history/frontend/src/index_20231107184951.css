@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.todo {
+  background-color: black;
+  color: white;
+  position: relative;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.completed {
+  text-decoration: line-through;
+}

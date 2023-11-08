@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  padding: 16px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.todo {
+  background-color: black;
+  color: white;
+  position: relative;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.completed {
+  text-decoration: line-through;
+}

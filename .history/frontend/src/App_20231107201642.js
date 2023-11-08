@@ -46,7 +46,7 @@ function App() {
         const curElement = event.target;
         if (curElement.id === 'editBtn') {
             const idx = curElement.parentNode.id;
-            const text = curElement.parentNode.firstChild.innerText;
+            const text = curElement.parentNode;
             console.log(text);
         }
     }

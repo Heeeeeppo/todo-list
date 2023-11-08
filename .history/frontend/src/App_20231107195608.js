@@ -17,7 +17,8 @@ function App() {
             setNewTodo("");
         } else {
             alert("Please check your input!");
-        } 
+        }
+        
     }
 
     function handleDelete(e) {
@@ -28,27 +29,6 @@ function App() {
                 return Number(id) !== idx;
             })
         );
-    }
-
-    function startEdit(todo) {
-        const curElement = document.getElementById(`${todo.id}`);
-        curElement.innerHTML = `
-            <div className="todo" key="${todo.id}" id="${todo.id}">
-                <li>${todo.text}</li>
-                <button id="saveBtn">Save</button>
-                <button onClick={handleCancel}>Cancel</button>
-            </div>
-        `;
-        return curElement;
-    }
-
-    function handleEdit(event) {
-        const curElement = event.target;
-        if (curElement.id === 'editBtn') {
-            const idx = curElement.parentNode.id;
-            const text = curElement.parentNode.firstChild.innerText;
-            console.log(text);
-        }
     }
 
     function toggleComplete(event) {
@@ -74,7 +54,7 @@ function App() {
                     value={newTodo} 
                     placeholder="Type something.."
                 />
-                <button id="addBtn" onClick={handleAdd}>Add</button>
+                <button className="addBtn" onClick={handleAdd}>Add</button>
             </div>
             
             <ul className="todos">
@@ -82,7 +62,7 @@ function App() {
                     return (
                         <div className="todo" key={idx} id={idx}>
                             <li onClick={toggleComplete}>{todo}</li>
-                            <button id="editBtn" onClick={handleEdit}>Edit</button>
+                            <button>Edit</button>
                             <button onClick={handleDelete}>&#x2715;</button>
                         </div>
                     )
