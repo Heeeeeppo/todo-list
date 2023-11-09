@@ -46,6 +46,7 @@ function App() {
         } catch (error) {
             console.error("Failed to add task:", error);
         }
+        // console.log(todos);
     }
 
     async function handleDelete(e) {
@@ -127,7 +128,9 @@ function App() {
             console.error("Failed to toggle task:", error);
         }
         
-    }  
+    }
+
+    
 
     return (
         <div className="App">
