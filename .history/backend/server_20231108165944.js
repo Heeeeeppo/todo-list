@@ -5,12 +5,12 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
-// app.options('*', cors());
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// })
+app.options('*', cors());
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+})
 app.use(express.json());
 
 mongoose.connect('mongodb://localhost/todo-list')
@@ -40,8 +40,8 @@ app.delete('/tasks/:id', async (req, res) => {
 
 app.put('/tasks/:id', async (req, res) => {
     const task = await Task.findById(req.params.id);
-    task.completed = !req.body.completed;
-    task.text = req.body.text;
+    task.completed = !task.completed;
+
     task.save();
     res.json(task);
 })

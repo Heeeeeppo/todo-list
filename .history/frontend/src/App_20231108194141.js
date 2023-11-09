@@ -127,7 +127,9 @@ function App() {
             console.error("Failed to toggle task:", error);
         }
         
-    }  
+    }
+
+    
 
     return (
         <div className="App">

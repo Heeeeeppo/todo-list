@@ -39,11 +39,16 @@ app.delete('/tasks/:id', async (req, res) => {
 })
 
 app.put('/tasks/:id', async (req, res) => {
-    const task = await Task.findById(req.params.id);
-    task.completed = !req.body.completed;
-    task.text = req.body.text;
-    task.save();
+    try {
+        const task = await Task.findById(req.params.id);
+    task.completed = !task.completed;
+
+    await task.save();
     res.json(task);
+    } catch (error) {
+        console.log(error)
+    }
+    
 })
 
 app.listen(3001, () => console.log("Server started on port 3001"));

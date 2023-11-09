@@ -46,88 +46,87 @@ function App() {
         } catch (error) {
             console.error("Failed to add task:", error);
         }
+        // console.log(todos);
     }
 
     async function handleDelete(e) {
-
+        
         const id = e.target.parentNode.id;
 
         try {
-          await fetch(`${BASE_URL}/${id}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-          setTodos(todos.filter((todo) => id !== todo._id));
+            await fetch(`${BASE_URL}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            setTodos(
+                todos.filter((todo) => {
+                    return id !== todo._id;
+                })
+            );
         } catch (error) {
-          console.error("Failed to delete a task");
+            console.error("Failed to delte a task");
         }
-      }
+        
+        
+    }
 
-      function startEdit(id) {
-        const todoToUpdate = todos.find((todo) => todo._id === id);
-        const newText = prompt("Enter new text", todoToUpdate.text);
-        if (newText !== null) {
-          handleEdit(id, newText);
-        }
-      }
+    function startEdit(todo) {
+        const curElement = document.getElementById(`${todo.id}`);
+        curElement.innerHTML = `
+            <div className="todo" key="${todo.id}" id="${todo.id}">
+                <li>${todo.text}</li>
+                <button id="saveBtn">Save</button>
+                <button onClick={handleCancel}>Cancel</button>
+            </div>
+        `;
+        return curElement;
+    }
 
-    async function handleEdit(id, newText) {
-        try {
-          await fetch(`${BASE_URL}/${id}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                text: newText,
-                completed: true
-            })
-          });
-    
-          setTodos((prevTodos) =>
-            prevTodos.map((todo) =>
-              todo._id === id ? { ...todo, text: newText, completed: false } : todo
-            )
-          );
-          fetchTask()
-          console.log(todos)
-        } catch (error) {
-          console.error("Failed to edit task:", error);
+    function handleEdit(event) {
+        const curElement = event.target;
+        if (curElement.id === 'editBtn') {
+            const idx = curElement.parentNode.id;
+            const text = curElement.parentNode.firstChild.innerText;
+            console.log(text);
         }
-      }
+    }
 
     async function toggleComplete(event) {
 
         const curElement = event.target;
         const id = curElement.parentNode.id;
-        const taskToUpdate = todos.find((todo) => todo._id === id);
-        const updatedTask = { ...taskToUpdate, completed: !taskToUpdate.completed };
+        let completed = true;
+        const text = curElement.innerText;
         
         if (curElement.className.includes("checked")) {
             curElement.className = curElement.className.replace("checked", "");
+            completed = false;
         } else {
             curElement.className = `${curElement.className} checked`
         }
+        // console.log(completed)
         try {
-            await fetch(`${BASE_URL}/${id}`, {
+            const response = await fetch(`${BASE_URL}/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(updatedTask)
+                // body: JSON.stringify({completed})
             });
-            setTodos((prevTodos) =>
-            prevTodos.map((todo) =>
-              todo._id === id ? { ...todo, completed: !todo.completed } : todo
-            )
-          );
+            // const data = await response.json();
+            // let toggledTask = todos.find(todo => todo._id === id);
+            // toggledTask = data;
+            // setTodos(todos);
+            // console.log(todos)
+            await fetchTask()
         } catch (error) {
             console.error("Failed to toggle task:", error);
         }
+
         
-    }  
+    }
 
     return (
         <div className="App">
@@ -141,7 +140,6 @@ function App() {
                     value={newTodo} 
                     placeholder="Type something.."
                 />
-                
                 <button id="addBtn" onClick={handleAdd}>Add</button>
             </div>
             
@@ -149,11 +147,9 @@ function App() {
                 {todos.map((todo) => {
                     return (
                         <div className="todo" key={todo._id} id={todo._id}>
-                            {todo.completed ? 
-                                <li className="checked" onClick={toggleComplete}>{todo.text}</li> 
-                                : <li onClick={toggleComplete}>{todo.text}</li>}
-                            <button id="editBtn" onClick={() => startEdit(todo._id)} >Edit</button>
-                            <button id="deleteBtn" onClick={handleDelete}>&#x2715;</button>
+                            <li onClick={toggleComplete}>{todo.text}</li>
+                            <button id="editBtn" onClick={handleEdit}>Edit</button>
+                            <button onClick={handleDelete}>&#x2715;</button>
                         </div>
                     )
                 })}
