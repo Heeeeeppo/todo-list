@@ -14,7 +14,35 @@ To run this small application, we need to open three terminals
 
 1. Firstly, we need to install packages. Following is the project structures.
 
-   <img src="/Users/king8/Desktop/Screenshot 2023-11-08 at 8.05.45 PM.png" alt="Screenshot 2023-11-08 at 8.05.45 PM" style="zoom:50%;" />
+   > todo-list
+   >
+   > > frontend
+   > >
+   > > > src
+   > > >
+   > > > > App.js
+   > > > >
+   > > > > index.js
+   > > > >
+   > > > > style.css
+   > > >
+   > > > src
+   > > >
+   > > > > Index.html
+   > > >
+   > > > package-lock.json
+   > > >
+   > > > package.json
+   > >
+   > > backend
+   > >
+   > > > models
+   > > >
+   > > > > Task.js
+   > > >
+   > > > package-lock.json
+   > > >
+   > > > package.json
 
    As the structure shows, we need to run  ```npm install``` both in backend and frontend directory.
 
